@@ -1,3 +1,10 @@
+/**
+ * The function converts a color in RGB format to HEX format.
+ * @param {string} RGB RGB string in String format
+ * @param {string} RGB RGB string in String format
+ * @return {string}
+ * @customfunction
+ */
 function PIVOT(flat, sortFlag) {
   if (!flat || flat.length < 2 || flat[0].length < 3) {
     return [["Error: A range with three columns is required (Parameter, System, Value)"]];
@@ -27,6 +34,12 @@ function PIVOT(flat, sortFlag) {
   return output;
 }
 
+/**
+ * The function converts a color in RGB format to HEX format.
+ * @param {string} RGB RGB string in String format
+ * @return {string}
+ * @customfunction
+ */
 function UNPIVOT(matrix) {
   if (!matrix || matrix.length < 2 || matrix[0].length < 2) {
     return [["Error: Minimum 2x2 range required"]];

@@ -14,7 +14,7 @@ function sendFilteredEmailsToChat() {
       var messageDate = msg.getDate();
       var diffMs = now - messageDate;
       var diffMinutes = diffMs / 1000 / 60;
-      console.log(diffMinutes);
+
       if (diffMinutes > 6) continue;
 
       var body = msg.getPlainBody();
@@ -22,8 +22,6 @@ function sendFilteredEmailsToChat() {
       var match = body.match(/Code:\s*(\d{6})/);
       var extractedText = match ? match[1].trim() : "❗ Unable to extract the required text";
       var returnedText = "_Account:_ " + userEmail + "\n_Code:_ *" + extractedText + "*";
-
-      console.log(returnedText);
 
       var payload = JSON.stringify({ text: returnedText});
       var options = {
@@ -33,7 +31,6 @@ function sendFilteredEmailsToChat() {
       };
       UrlFetchApp.fetch(webhookUrl, options);
     }
-
     threads[i].markRead();
   }
 }

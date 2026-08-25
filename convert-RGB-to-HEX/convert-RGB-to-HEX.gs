@@ -1,79 +1,75 @@
-function ConvertRGBtoHEX(RGB)
-{
+/**
+ * The function converts a string color in RGB format to string HEX format.
+ * @param {string} RGB RGB string in String format
+ * @return {string} HEX string in String format
+ * @customfunction
+ */
+function ConvertRGBtoHEX(RGB) {
+
   var returned_hex = "#";
   var condition = isChecker(RGB)[0];
   var _array = isChecker(RGB)[1];
-  if (condition)
-  {
-    for (var i = 0;i<_array.length;i++)
-    {
+
+  if (condition) {
+    for (var i = 0;i<_array.length;i++) {
       var number = _array[i];
       returned_hex += number.toString(16);
     }
   }
   return returned_hex
 }
-function isChecker(RGB)
-{
+
+const isChecker = (RGB) => {
+
   var returned_number = [];
-  if (typeof(RGB) != "string")
-  {
+  if (typeof(RGB) != "string") {
     return [false, null];
   }
+
   var delimiter = findDelimiter(RGB);
-  var _array = RGB.split(delimiter); //Need function to finding delimiter
-  if (_array.length != 3)
-  {
+  var _array = RGB.split(delimiter);
+  if (_array.length != 3) {
     return [false, null];
   }
-  for (var i = 0;i<3;i++)
-  {
+
+  for (var i = 0;i<3;i++) {
     var number = _array[i];
     number = +number;
-    if (number < 0 | number > 255)
-    {
+    if (number < 0 | number > 255) {
       return [false, null];
     }
-    else
-    {
+    else {
       returned_number.push(number)
     }
   }
   return [true, returned_number];
 }
-function findDelimiter(RGB)
-{
+
+const findDelimiter = (stringRGB) => {
+
   var delimiter = "";
   var all_delimiters = [];
-  for (var i=0;i<RGB.length;i++)
-  {
-    var one_symbol = RGB[i];
-    if (/^\d+$/.test(one_symbol))
-    {
-      if (delimiter.length != 0)
-      {
+
+  for (var i=0; i<stringRGB.length; i++) {
+    var one_symbol = stringRGB[i];
+    if (/^\d+$/.test(one_symbol)) {
+      if (delimiter.length != 0) {
         all_delimiters.push(delimiter);
         delimiter = "";
       }
-    }
-    else
-    {
+    } else {
       delimiter += one_symbol;
     }
   }
-  if (all_delimiters.length != 2)
-  {
+
+  if (all_delimiters.length != 2) {
     return "";
   }
-  else if (all_delimiters.length > 2)
-  {
-    if (all_delimiters[0] != all_delimiters[1])
-    {
+  else if (all_delimiters.length > 2) {
+    if (all_delimiters[0] != all_delimiters[1]) {
       return "";
     }
-  }
-  else
-  {
+  } else {
     return all_delimiters[0];
   }
 }
